@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="autor" content="Lautaro Santillan">
+    <title>Home - Proyecto Final Backend</title>
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+        crossorigin="anonymous"
+    >
+    <link rel="icon" sizes="16x16" href="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Html-128.png">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        {{> navbar}}
+    </header>
+    <main class="container-fluid">
+        <div class="col my-4">
+            <h3 class="text-primary h3 text-center">Nuestros productos</h3>
+            <h4 class="text-primary h4 text-center">Ver por categoría</h4>
+            <form action="/productos/view/:category" class="categories">
+                <select name="category" id="category" class="my-1">
+                    <option value="lego">Lego</option>
+                    <option value="deportes">Deportes</option>
+                    <option value="accion">Acción</option>
+                </select>
+                <button type="submit" class="btn btn-dark my-1">Ver</button>
+            </form>            
+            <div id="list" class="section__tablaProductos">
+            </div>
+        </div>
+    </main>
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
+    <script src="../js/home.js"></script>
+
+</body>
+</html>
