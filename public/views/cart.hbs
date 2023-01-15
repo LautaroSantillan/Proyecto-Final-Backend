@@ -51,12 +51,17 @@
                 </tbody>
             </table>
             <div id="total"></div>
-            <form class="my-4" action="/order" method="post">
-                <button type="submit" class="btn btn-success">Comprar</button>
-            </form>
-            <form class="my-4" onclick="return vaciarCarrito(this)">
-                <button type="submit" class="btn btn-danger">Vaciar Carrito</button>
-            </form>
+            <div class="div-buttons">
+                <form class="my-4" action="/order" method="post">
+                    <button type="submit" class="btn btn-success">Comprar</button>
+                </form>
+                <form class="my-4" onclick="return vaciarCarrito(this)">
+                    <button type="submit" class="btn btn-danger">Vaciar Carrito</button>
+                </form>
+                <form class="my-4" action='/productos' method='GET' {{!-- onsubmit="return agregarProducto(this)" --}}>
+                    <button type='submit' class='btn btn-primary'>Volver a Home</button>
+                </form>
+            </div>
         </section>
     </main>
     <script

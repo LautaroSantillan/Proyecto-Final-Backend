@@ -3,8 +3,10 @@
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
-    background-color: rgb(206, 210, 226) /* #212529 
-    color: #0d6efd;*/;
+    /* background-color: rgb(206, 210, 226); */
+}
+body{
+    background-color: antiquewhite;
 }
 main{
     padding: 2em;
@@ -51,6 +53,13 @@ nav ul{
 .date{
     color: brown;
 }
+.titleh1{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    color: cornflowerblue;
+}
 .img__producto{
     max-width: 50px;
     max-height: 50px;
@@ -69,6 +78,7 @@ nav ul{
     justify-content: center;
     align-items: center;
     width: 90%;
+    margin-top: 5%;
 }
 .boton{
     display: flex;
@@ -113,8 +123,8 @@ nav ul{
 .card_detail{
     min-width: 25em;
     min-height: 30em;
-    max-width: 25em;
-    max-height: 30em;
+    max-width: 30em;
+    max-height: 50em;
 }
 .card_detail img{
     max-height: 8em;
@@ -123,10 +133,14 @@ nav ul{
 .card_detail p{
     font-weight: bold;
 }
-
+.card_detail h3{
+    font-style: italic;
+    text-decoration: underline;
+}
 .img__card{
     width: 90%;
     max-height: 5em;
+    border: 1px solid #023661;
 }
 .button__iconNavBar{
     display: flex;
@@ -137,7 +151,16 @@ nav ul{
     background-color: #212529;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
-
+.nav-link{
+    text-align: center;
+}
+.div-buttons{
+    display: inline-flex;
+}
+.div-buttons form{
+    margin: 10px;
+}
+/* MEDIA QUERIES */
 @media screen and (max-width: 900px) {
     nav ul li{
         display: flex;

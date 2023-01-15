@@ -12,8 +12,9 @@ dotenv.config();
 /* ---------- APP ---------- */
 const CPUs = os.cpus();
 const numCPUs = CPUs.length;
-const PORT = process.env.PORT;
+const PORT = config.puerto;
 const modo = config.modoServer;
+
 /* ---------- CLUSTER ---------- */
 if(cluster.isPrimary && modo === 'cluster'){
     logger.info(`Primary ${process.pid} is running`);
@@ -30,7 +31,7 @@ if(cluster.isPrimary && modo === 'cluster'){
     const app = createServer();
     try {
         const connectedServer = await app.listen(PORT);
-        logger.info(`Server is listening in the port http://localhost:${connectedServer.address().port}/ - Date: ${new Date().toLocaleDateString()}`);
+        logger.info(`Server is listening in the port http://localhost:${PORT}/ - Date: ${new Date().toLocaleDateString()}`);
     } catch (error) {
         logger.error(`Error en servidor ${error}`);
     }

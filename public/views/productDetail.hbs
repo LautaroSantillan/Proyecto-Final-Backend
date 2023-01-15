@@ -24,20 +24,23 @@
         <div class="section section_detail">
             <h3 class="text-primary h3 text-center">Detalles del producto</h3>
                 <div class="col container my-4 card card_detail">
-                    <h4 class="text-primary h4 text-center">{{producto.title}}</h4>
+                    <h3 class="text-primary h4 text-center">{{producto.title}}</h3>
                     <h4 class="text-primary h4 text-center">Categoría: {{producto.category}}</h4>
                     <img src="{{producto.thumbnail}}" class="img-fluid img__card"/>
-                    <p class="text-center text-primary">Precio: {{producto.price}}</p>
+                    <br>
+                    <p class="text-center text-primary">Precio: ${{producto.price}}</p>
                     <p class="text-center text-primary">Cantidad: {{producto.stock}}</p>
                     <p class="text-center text-primary">{{producto.description}}</p>
                     <p class="text-center text-primary">Código: {{producto.code}}</p>
-                    <form action='/cart' method='POST' {{!-- onsubmit="return agregarProducto(this)" --}}>
+                    <div class="div-buttons">
+                        <form action='/cart' method='POST' {{!-- onsubmit="return agregarProducto(this)" --}}>
                         <input type='hidden' name='productId' value='{{producto._id}}' id="productId" /> {{!-- lo recibimos al post en /cart con req.body.productId --}}
                         <button type='submit' class='btn btn-primary'>Agregar al carrito</button>
-                    </form>
-                    <form action='/productos' method='GET' {{!-- onsubmit="return agregarProducto(this)" --}}>
-                        <button type='submit' class='btn btn-primary'>Volver a Home</button>
-                    </form>
+                        </form>
+                        <form action='/productos' method='GET' {{!-- onsubmit="return agregarProducto(this)" --}}>
+                            <button type='submit' class='btn btn-primary'>Volver a Home</button>
+                        </form>
+                    </div>
                 </div>
         </div>
     </main>
