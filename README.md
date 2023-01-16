@@ -1,65 +1,103 @@
-# Trabajo final del cursor Programación Backend de Coderhouse
+# CoderHouse Final Backend Project
 
-## Descripción
+## Autor
 
-El trabajo consiste en desarrollar una api rest que conlleve la lógica de un e-commerce, dentro del repositorio se
-encuentra un archivo pdf con la consigna a desarrollar.
+* **Lautaro Santillan** - *Initial developer*  
+
+## Description
+The job consists of developing the backend of an e-commerce application to be able to sell products of a chosen category. With a REST API that carries the business logic.
+
+## [Project instructions](https://docs.google.com/document/d/1bVNLHkuWU2ao1DWFQLK2qRH9Fw9PIqzl4xkQp0UNtmg/edit)
 
 ## Link Railway
 [Link]() 
 
-## Instalación
+***WEB PREVIEW***
+![ecommerce capture](https://firebasestorage.googleapis.com/v0/b/fotoscap-6a770.appspot.com/o/PreviewWeb.png?alt=media&token=1a87a160-b512-456c-83a2-518963a984ee)
 
-- Clonar el repositorio
-- Ejecutar npm i
 
-## Variables de entorno
+## Installation
 
-Datos para configurar el servidor
+1.  Clone the repository
 
-Datos para el archivo .env
+2.  Install NPM packages
 
-    MONGODB_URL='Dirección de la base de datos mongo'
+```bash
+npm install
+```
+3. Start the server
+```bash
+node server.js
+```
 
-    PORT=8080
+## Environment Variables
 
-    JWT_SECRET='clave secreta de JWT'
+* Data to configure the server (.env file)
 
-    MAIL='mail de nodemailer'
+    PORT='Port to deploy the app, for example: 8080'
 
-    MAIL_PASSWORD='password de nodemailer'
+    COOKIES_SECRET='Cookies that the app will have, for example: 123456'
 
-    MONGO_PASSWORD='clave para conectar con MongoDB'
+    SESSION_SECRET='Session that the app will have, for example: 123456'
 
-    MONGO_USER='usuario para conectar con MongoDB'
+    MONGO_USER='User to connect to MongoDB'
 
-    MONGO_HOST='host para conectar con MongoDB'
+    MONGO_PASSWORD='Password to connect to MongoDB'
 
-    MAIL_ADMIN='mail de preferencia para que lleguen los correos de prueba'
+    MONGO_HOST='Host to connect to MongoDB'
 
-    PHONE_ADMIN='número al que llegaría la notificación de twilio'
+    DAO_MENSAJES='Memory persistence, for example: mongo'
 
-    TWILIO_WHATSAPP_NUMBER='whatsapp:+número al que llegaría la notificación de twilio'
+    DAO_PRODUCTOS='Memory persistence, for example: mongo'
 
-## Información útil
+    DAO_CARRITOS='Memory persistence, for example: mongo'
 
-Al ingresar al localhost del servidor a traves del navegador se encontrará con una pantalla para loguearse o registrarse, 
-luego de ingresar con cuenta validada, se redirije al home donde se ven los productos.
-Allí contamos con un navbar que dirige a distintas secciones: perfil usuario, información servidor, carrito del usuario, webchat, y para cerrar sesión.
+    DAO_ORDER='Memory persistence, for example: mongo'
 
-## Herramientas utilizadas
+    MAIL='Mail from NodeMailer'
 
-- JavaScript.
-- Node Js.
-- Express.
-- MongoDB.
-- Twilio.
-- Nodemailer.
-- JWT.
-- Passport.
-- Bcrypt.
-- Compression.
-- Handlebars.
-- Morgan.
-- Socket.io.
-- Winston.
+    MAIL_PASSWORD='Password NodeMailer'
+
+    MAIL_ADMIN='Preferred email for test emails to arrive'
+
+    TWILIO_ACCOUNT_SID='Account SID provided by Twilio'
+
+    TWILIO_AUTH_TOKEN='Authentication token provided by Twilio'
+
+    TWILIO_PHONE_NUMBER='Test phone number given by Twilio'
+
+    PHONE_ADMIN='Personal number'
+
+    TWILIO_WHATSAPP_NUMBER='Whatsapp:+número al que llegaría la notificación de Twilio'
+
+    JWT_SECRET='JWT secret key'
+
+## IUseful information
+
+* When entering the localhost of the server through the browser you will find a screen to log in or register.
+* After logging in with a validated account, you are redirected to the home where you can see the products.
+* There we have a navbar that leads to different sections: user profile, server information, user cart, webchat, and to log out.
+
+## Used tools
+
+- **JavaScript** : Interpreted programming language
+- **Node Js** : Open source server environment
+- **Express** : Web application framework
+- **MongoDB** : NOSql Database
+- **Mongoose** : Library that creates a connection between MongoDB and Express
+- **Twilio** : Programmable communication tool
+- **Nodemailer** : Mail manager
+- **JWT** : Authorization token generator
+- **Passport** :  Express-compatible authentication middleware for Node. js
+- **Bcrypt** : Password encryptor
+- **Compression** : Package decreases the downloadable amount of data that's served to users.
+- **Handlebars** : Templating language for the views
+- **Morgan** :
+- **Socket.io** : Library for real-time web applications. Used for the chat
+- **Winston** : Most popular logging library for Node. js
+- **Schema** : Schema of a database
+- **Normalizr** : Normalizes and denormalizes JSON according to schema for Redux and Flux applications.
+- **multer** : NPM package that makes it easy to handle file uploads
+- **yargs** : Interactive command line tool, by parsing arguments and generating an elegant user interface
+
+@everyone :shipit: => I hope you liked the project!! :wink:
