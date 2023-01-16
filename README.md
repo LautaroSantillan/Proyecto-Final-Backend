@@ -9,8 +9,7 @@ The job consists of developing the backend of an e-commerce application to be ab
 
 ## [Project instructions](https://docs.google.com/document/d/1bVNLHkuWU2ao1DWFQLK2qRH9Fw9PIqzl4xkQp0UNtmg/edit)
 
-## Link Railway
-[Link]() 
+## [Link Railway]() 
 
 ***WEB PREVIEW***
 ![ecommerce capture](https://firebasestorage.googleapis.com/v0/b/fotoscap-6a770.appspot.com/o/PreviewWeb.png?alt=media&token=1a87a160-b512-456c-83a2-518963a984ee)
@@ -32,7 +31,7 @@ node server.js
 
 ## Environment Variables
 
-* Data to configure the server (.env file)
+Data to configure the server (.env file)
 
     PORT='Port to deploy the app, for example: 8080'
 
@@ -72,7 +71,7 @@ node server.js
 
     JWT_SECRET='JWT secret key'
 
-## IUseful information
+## Useful information
 
 * When entering the localhost of the server through the browser you will find a screen to log in or register.
 * After logging in with a validated account, you are redirected to the home where you can see the products.
