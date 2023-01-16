@@ -160,6 +160,39 @@ nav ul{
 .div-buttons form{
     margin: 10px;
 }
+.footer {
+    width: 100%;
+    background-color: darkgray;
+    padding: 10px 0;
+    bottom: 0;
+    position: fixed;
+}
+.navbar-footer {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+}
+.navbar-footer li {
+    display: inline-block;
+    padding: 0 15px;
+}
+.navbar-footer li a{
+    text-decoration: none;
+    color: #212529;
+}
+.copyright {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.copyright small {
+    font-weight: 500;
+}
 /* MEDIA QUERIES */
 @media screen and (max-width: 900px) {
     nav ul li{
