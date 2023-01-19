@@ -33,9 +33,6 @@
                     <p class="text-center text-primary">{{producto.description}}</p>
                     <p class="text-center text-primary">Código: {{producto.code}}</p>
                     <div class="div-buttons">
-                        <form action='/cart' method='POST' {{!-- onsubmit="return agregarProducto(this)" --}}>
-                        <input type='hidden' name='productId' value='{{producto._id}}' id="productId" /> {{!-- lo recibimos al post en /cart con req.body.productId --}}
-                        <button type='submit' class='btn btn-primary'>Agregar al carrito</button>
                         </form>
                         <form action='/productos' method='GET' {{!-- onsubmit="return agregarProducto(this)" --}}>
                             <button type='submit' class='btn btn-primary'>Volver a Home</button>

@@ -26,7 +26,7 @@ npm install
 ```
 3. Start the server
 ```bash
-node server.js
+node app.js
 ```
 
 ## Environment Variables
@@ -53,9 +53,9 @@ Data to configure the server (.env file)
 
     DAO_ORDER='Memory persistence, for example: mongo'
 
-    MAIL='Mail from NodeMailer'
+    MAIL='Mail from Ethereal or Gmail'
 
-    MAIL_PASSWORD='Password NodeMailer'
+    MAIL_PASSWORD='Password Ethereal or Gmail for apps'
 
     MAIL_ADMIN='Preferred email for test emails to arrive'
 

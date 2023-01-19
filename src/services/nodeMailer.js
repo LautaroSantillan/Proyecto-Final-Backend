@@ -9,7 +9,7 @@ const MAIL_ADMIN = process.env.MAIL_ADMIN;
 /* --------- --------- */
 export const sendEmailNewUser = async ( user ) =>{
     const transporter = createTransport({
-        host: 'smtp.ethereal.email',
+        service: 'gmail',
         port: 587,
         auth: {
             user: MAIL,
@@ -18,7 +18,7 @@ export const sendEmailNewUser = async ( user ) =>{
     });
     
     const mailOptions = {
-        from: 'Servidor Backend',
+        from: 'Servidor Backend <noreply@example.com>',
         to: MAIL_ADMIN,
         subject: 'Nuevo Registro',
         text: `Se ha registrado un nuevo usuario: ${user.name} con el email: ${user.userEmail}`,
@@ -33,20 +33,16 @@ export const sendEmailNewUser = async ( user ) =>{
 /* --------- --------- */
 export const sendEmailNewOrder = async ( order, total, user ) =>{
     const transporter = createTransport({
-        host: 'smtp.ethereal.email',
+        service: 'gmail',
         port: 587,
         auth: {
             user: MAIL,
             pass: MAIL_PASSWORD,
-        },
-        secure: false,
-        tls: {
-            rejectUnauthorized: false
         }
     })
     
     const mailOptions = {
-        from: 'Servidor Backend',
+        from: 'Servidor Backend <noreply@example.com>',
         to: MAIL_ADMIN, 
         subject: 'Nueva Orden',
         html: `<p>Se ha realizado un nuevo pedido por el usuario ${user.name} con el email: ${user.userEmail} y el teléfono: ${user.phone} con el siguiente detalle: ${order} , \nTOTAL: $ ${total}</p>`,
