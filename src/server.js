@@ -31,7 +31,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const absolutePath = join(__dirname, '..');
 
 /* ---------- FUNCIÓN PARA CREAR EL SERVER ---------- */
-const createServer = () => {
+export const createServer = () => {
 
     /* ---------- INSTANCIA SERVER ---------- */
     const app = express();
@@ -82,40 +82,3 @@ const createServer = () => {
         })
     };
 };
-
-/* ---------- CONFIG SERVER ---------- */
-import os from 'os';
-import cluster from 'cluster';
-import dotenv from 'dotenv';
-dotenv.config();
-
-/* ---------- APP ---------- */
-const CPUs = os.cpus();
-const numCPUs = CPUs.length;
-const PORT = config.puerto;
-const modo = config.modoServer;
-
-/* ---------- CLUSTER ---------- */
-if(cluster.isPrimary && modo === 'cluster'){
-    logger.info(`Primary ${process.pid} is running`);
-    for (let i = 0; i < numCPUs; i++) {
-        cluster.fork();
-    };
-    cluster.on('online', (worker, code, signal) =>{
-        logger.info(` Worker: ${worker.process.pid} start. Date: ${new Date().toLocaleDateString()}`);
-    });
-    cluster.on('exit', (worker, code, signal) =>{
-        logger.info(` Worker: ${worker.process.pid} died. Date: ${new Date().toLocaleDateString()}`);
-    });
-} else {
-    const app = createServer();
-    try {
-        const connectedServer = await app.listen(PORT);
-        logger.info(`Server is listening in the port http://localhost:${PORT}/ - Date: ${new Date().toLocaleDateString()}`);
-    } catch (error) {
-        logger.error(`Error en servidor ${error}`);
-    }
-    process.on('exit', code => {
-        logger.error('Salida con código de error: ' + code);
-    })
-}
