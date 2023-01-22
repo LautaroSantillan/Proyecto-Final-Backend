@@ -8,8 +8,6 @@ class MensajesDto {
     }
 }
 
-
-    
 export default function asDto(data){
     if(Array.isArray(data)) return data.map(msj => new MensajesDto(msj))
     return new MensajesDto(data)

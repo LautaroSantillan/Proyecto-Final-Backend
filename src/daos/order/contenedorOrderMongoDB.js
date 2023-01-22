@@ -1,15 +1,14 @@
 import asDto from "../../dtos/orderDTO.js";
 import { logger } from "../../utils/logger.js";
-
-asDto
+/* ----- -----*/
 export class ContenedorOrderMongoDB {
     constructor(coleccion){
         this.coleccion = coleccion
     }
-    async crearOrden(email, address, obj ){
+    async crearOrden(email, address, obj){
         try{
             if(obj){
-                const ordenNueva = await this.coleccion.create({ email: email, productos: obj , address: address})
+                const ordenNueva = await this.coleccion.create({email: email, productos: obj , address: address})
                 logger.info(`La orden fue cargada: ${ordenNueva}`);
                 return asDto(ordenNueva)
             }else{
@@ -38,7 +37,6 @@ export class ContenedorOrderMongoDB {
             logger.error('Error al implementar order/updateCart' , error);
         }
     }
-
     async getById(id){
         try{
             const orden = await this.coleccion.findById({_id: id})
@@ -95,7 +93,6 @@ export class ContenedorOrderMongoDB {
             logger.error('Error al implementar order/deleteById' , error);
         }
     }
-
     async deleteAll(){
         try{
             const ordenes = await this.coleccion.find({})

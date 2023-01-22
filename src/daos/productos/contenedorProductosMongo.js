@@ -1,11 +1,10 @@
 import { logger } from "../../utils/logger.js";
 import asDto from "../../dtos/productosDTO.js";
-
+/* ----- ----- */
 export class ContenedorProductosMongo{
     constructor(coleccion){
         this.coleccion = coleccion
     }
-
     async save(obj){
         try{
             let producto = await this.coleccion.create(obj);
@@ -56,7 +55,6 @@ export class ContenedorProductosMongo{
             logger.error('Error en getAll / productos', error);
         }
     }
-
     async getByCategory(category){
         try{
             let productos = await this.coleccion.find({ category: category })
@@ -71,7 +69,6 @@ export class ContenedorProductosMongo{
             logger.error('Error en getById / productos', error);
         }
     }
-
     async deleteById(id){
         try{
             const producto = await this.coleccion.findOne({ _id: id })

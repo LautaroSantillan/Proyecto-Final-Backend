@@ -1,11 +1,11 @@
-import { logger } from "../utils/logger.js"
-
+import { logger } from "../utils/logger.js";
+/* ----- -----*/
 export const getLogout = async (req, res) =>{
     try{
-        logger.info('GET /logout')
+        logger.info('GET /logout');
         const logout = () => {
-            req.session.destroy()
-        }
+            req.session.destroy();
+        };
         setTimeout(
             logout, 2000
         )
@@ -18,8 +18,7 @@ export const getLogout = async (req, res) =>{
         res.status(500).json({
             success: false,
             message: error.message
-        })
-        logger.error(error)
+        });
+        logger.error(error);
     }
 }
-

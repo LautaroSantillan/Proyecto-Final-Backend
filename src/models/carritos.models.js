@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+/* ----- -----*/
 const productosEnCarrito = mongoose.Schema({
     producto: {
         type: Object ,
@@ -10,10 +10,9 @@ const productosEnCarrito = mongoose.Schema({
         min: 1 ,
         default: 1
     }
-    
-})
+});
 
-export const carritosModel = mongoose.model( 'carritos', {
+export const carritosModel = mongoose.model('carritos', {
     timestamp: { type: Date, default: Date.now },
     email:{
         type: String,
@@ -27,4 +26,4 @@ export const carritosModel = mongoose.model( 'carritos', {
         type: String,
         required: true,
     }
-})
+});

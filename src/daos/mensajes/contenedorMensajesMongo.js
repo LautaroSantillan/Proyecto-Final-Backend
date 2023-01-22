@@ -1,6 +1,6 @@
 import asDto from "../../dtos/mensajesDTO.js";
 import { logger } from "../../utils/logger.js";
-
+/* ----- ----- */
 export class ContenedorMensajesMongo{
     constructor(coleccion){
         this.coleccion = coleccion
@@ -96,4 +96,3 @@ export class ContenedorMensajesMongo{
         }
     }
 }
-

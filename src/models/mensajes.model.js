@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+/* ----- -----*/
 export const mensajesModel = mongoose.model('mensajes', {
     email: {
         type: String, 
@@ -17,7 +17,4 @@ export const mensajesModel = mongoose.model('mensajes', {
         required: true,
         trim: true
     },
-})
-
-
-
+});
