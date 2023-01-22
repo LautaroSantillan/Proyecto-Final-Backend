@@ -11,8 +11,12 @@ The job consists of developing the backend of an e-commerce application to be ab
 
 ## [Link Railway]() 
 
-***WEB PREVIEW***
-![ecommerce capture](https://firebasestorage.googleapis.com/v0/b/fotoscap-6a770.appspot.com/o/PreviewWeb.png?alt=media&token=1a87a160-b512-456c-83a2-518963a984ee)
+***WEB VIEW***
+![ecommerce capture](https://firebasestorage.googleapis.com/v0/b/fotoscap-6a770.appspot.com/o/PreviewWeb.png?alt=media&token=9d45bdd5-da95-4314-ac56-f93b8c4e5cef)
+***ORDER VIEW***
+![ecommerce capture](https://firebasestorage.googleapis.com/v0/b/fotoscap-6a770.appspot.com/o/PreviewOrder.png?alt=media&token=7cbf7349-c5a0-4ec4-907d-d321b0c8259e)
+***EMAIL VIEW***
+![ecommerce capture](https://firebasestorage.googleapis.com/v0/b/fotoscap-6a770.appspot.com/o/PreviewEmail.png?alt=media&token=6136920c-fd28-414c-8a3a-90e279a0af5a)
 
 
 ## Installation
