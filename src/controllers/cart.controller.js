@@ -1,11 +1,8 @@
 import { logger } from "../utils/logger.js"
-import { CarritosApi, OrderApi , ProductosApi } from "../api/index.api.js";
-import { sendEmailNewOrder } from "../services/nodeMailer.js";
-import { sendNewOrder, sendWhatsApp, sendWhatsAppAdmin } from "../services/twilio.js";
+import { CarritosRepo, ProductosRepo } from "../repositories/index.repositories.js";
 /* ----- ----- */
-const carritosApi = new CarritosApi()
-const productosApi = new ProductosApi()
-const orderApi = new OrderApi()
+const carritosRepo = new CarritosRepo()
+const productosRepo = new ProductosRepo()
 /* ----- ----- */
 export const getCart = async (req,res) =>{    
     try{
@@ -13,12 +10,12 @@ export const getCart = async (req,res) =>{
         let user = req.user
         let email = user.userEmail
         let address = user.address
-        let carrito = await carritosApi.getByEmail(email)
+        let carrito = await carritosRepo.getByEmail(email)
 
         if(carrito){
-            carrito = await carritosApi.getByEmail(email)            
+            carrito = await carritosRepo.getByEmail(email)            
         }else{
-            carrito = await carritosApi.crearCarrito(email, address)
+            carrito = await carritosRepo.crearCarrito(email, address)
         }
 
         res.status(200).render('cart', {user, carrito })
@@ -39,23 +36,21 @@ export const addToCart = async (req,res) =>{
         let address = user.address
         const { idProducto } = req.body
         
-        let carrito = await carritosApi.getByEmail(email)
-        let producto = await productosApi.getById(idProducto)
+        let carrito = await carritosRepo.getByEmail(email)
+        let producto = await productosRepo.getById(idProducto)
 
         if(carrito && producto){
-            //producto = await productosApi.getById(idProducto)
-
-            await carritosApi.pushProduct(email , producto )            
-            carrito = await carritosApi.getByEmail(email)            
+            await carritosRepo.pushProduct(email , producto )            
+            carrito = await carritosRepo.getByEmail(email)            
         }else{
-            carrito = await carritosApi.crearCarrito(email, address)
-            producto = await productosApi.getById(idProducto)
+            carrito = await carritosRepo.crearCarrito(email, address)
+            producto = await productosRepo.getById(idProducto)
 
-            await carritosApi.pushProduct(email , producto )            
-            carrito = await carritosApi.getByEmail(email)
+            await carritosRepo.pushProduct(email , producto )            
+            carrito = await carritosRepo.getByEmail(email)
         }
 
-        carrito = await carritosApi.getByEmail(email)
+        carrito = await carritosRepo.getByEmail(email)
 
         res.status(200).render('cart', {user, carrito})
     }catch(error){
@@ -74,13 +69,13 @@ export const postCart = async (req,res) =>{
         let { productId } = req.body
         let email = user.userEmail
         let address = user.address
-        const producto = await productosApi.getById(productId)
-        const carrito = await carritosApi.getByEmail(email)
+        const producto = await productosRepo.getById(productId)
+        const carrito = await carritosRepo.getByEmail(email)
         if(producto && carrito){
-            const nuevoCarrito = await carritosApi.pushProduct(email, producto)
+            const nuevoCarrito = await carritosRepo.pushProduct(email, producto)
         }else{
-            await carritosApi.crearCarrito( email , address )
-            await carritosApi.pushProduct(email, producto)
+            await carritosRepo.crearCarrito( email , address )
+            await carritosRepo.pushProduct(email, producto)
         }
         res.status(200).render('cart', {user, carrito})
     }catch(error){
@@ -98,12 +93,12 @@ export const deleteProductFromCart = async (req, res) => {
         const user = req.user
         const email = user.userEmail
         const { idProducto } = req.params
-
-        let carrito = await carritosApi.getByEmail(email)
-
-        await carrito.updateOne({ $pull: { productos: { _id: idProducto } } })
-        carrito = await carritosApi.getByEmail(email)
-
+        let carrito = await carritosRepo.getByEmail(email)
+        if(carrito){
+            logger.info('Eliminando producto del carrito' )
+            await carritosRepo.deleteProductInCart(email, idProducto)
+            carrito = await carritosRepo.getByEmail(email)
+        }
         res.status(200).render('cartId', {user, carrito})
     } catch (error) {
         logger.error('Error en deleteProductFromCart', error)
@@ -114,25 +109,4 @@ export const deleteProductFromCart = async (req, res) => {
     }
 }
 
-/* export const vaciarCarrito = async ( req, res ) => {
-    try {
-        console.log("Vaciar")
-        let user = req.user
-        let email = user.userEmail 
-        let carrito = await carritosApi.getByEmail(email)
-        
-        if(carrito){           
-            total = 0
-            await carrito.updateOne({ $set: { productos: [] } })  
-            carrito = await carritosApi.getByEmail(email)
-            res.status(200).render('cart', {user, carrito})              
-        }
-    }catch (error) {
-        logger.error('Error en vaciarCarrito', error)
-        res.status(500).json({
-            success: false,
-            message: error.message
-        })
-    }
-} */
 

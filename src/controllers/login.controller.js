@@ -35,7 +35,7 @@ export const postLogin = async (req,res)=>{
 export const getFailLogin = async (req,res)=>{
     try {
         logger.info(`GET /faillogin`)
-        res.render('login-error');
+        res.render('login-error' );
     } catch (error) {
         res.status(500).json({
             success: false,

@@ -1,11 +1,11 @@
 import { logger } from "../utils/logger.js"
-import { CarritosApi, OrderApi, ProductosApi } from "../api/index.api.js";
+import { CarritosRepo, OrderRepo } from "../repositories/index.repositories.js";
 import { sendEmailNewOrder } from "../services/nodeMailer.js";
-import { sendNewOrder, sendWhatsApp, sendWhatsAppAdmin } from "../services/twilio.js";
+import { sendWhatsApp, sendWhatsAppAdmin } from "../services/twilio.js";
 import { actualizarStockProductos } from "../utils/stock.js";
 /* ----- ----- */
-const orderApi = new OrderApi()
-const carritosApi = new CarritosApi()
+const orderRepo = new OrderRepo()
+const carritosRepo = new CarritosRepo()
 /* ----- ----- */
 const sumar = (arr) => {
     let total = 0
@@ -20,7 +20,7 @@ export const getOrder = async (req,res) =>{
         logger.info('GET /order' )
         let user = req.user
         let email = user.userEmail
-        let order = await orderApi.getByEmail(email)
+        let order = await orderRepo.getByEmail(email)
         if (order){
             res.status(200).render('order', {user, order })
         }else{
@@ -41,10 +41,10 @@ export const postOrder = async ( req, res ) => {
         let user = req.user
         let total
         let orderEnviar
-        const carrito = await carritosApi.getByEmail(user.userEmail)
+        const carrito = await carritosRepo.getByEmail(user.userEmail)
 
         if(carrito){
-            logger.info("Se encontro carrito para comprar")
+            logger.info("Se encontro carrito pa comprar")
             let precios = carrito.productos.map( prod => prod.producto.price)
             total = sumar(precios)
             orderEnviar = carrito.productos.map( prod => {
@@ -53,13 +53,13 @@ export const postOrder = async ( req, res ) => {
                     Precio: $${prod.producto.price}
                 `
             }) 
-            let ordenParaMongo = await orderApi.crearOrden( user.userEmail , user.address , carrito.productos )
+            let ordenParaMongo = await orderRepo.crearOrden( user.userEmail , user.address , carrito.productos )
     
             await actualizarStockProductos(carrito.productos)
             await sendWhatsAppAdmin(orderEnviar, total, user) // ---> Este envía a ADMIN por whatsapp la Orden ya que no deja enviar SMS a msj sin verificar
             await sendWhatsApp(orderEnviar, total , user) // ---> Este envía whatsapp a usuario su orden
             await sendEmailNewOrder(orderEnviar, total, user) // ---> Este envía correo a usuario su orden
-            await carrito.updateOne({ $set: { productos: [] } })
+            await carritosRepo.deleteAllProducts(user.userEmail) 
             
             let order = ordenParaMongo
             res.status(200).render('order', {user, order})

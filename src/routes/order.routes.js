@@ -1,12 +1,11 @@
-import express from "express";
+import express from "express"
 import { getOrder, postOrder } from "../controllers/order.controller.js";
 const { Router } = express;
-import { checkAuth } from "../middlewares/auth.middleware.js";
-
 const routes = Router();
+import { checkAuth } from "../middlewares/auth.middleware.js"
 
 /* ---------  ------------- */
-routes.get('/', checkAuth , getOrder );
-routes.post('/', checkAuth , postOrder );
+routes.get('/', checkAuth , getOrder )
+routes.post('/', checkAuth , postOrder )
 
 export default routes;
