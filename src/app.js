@@ -7,12 +7,12 @@ import os from 'os';
 import cluster from 'cluster';
 import { logger } from './utils/logger.js';
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config()
 
 /* ---------- APP ---------- */
 const CPUs = os.cpus();
 const numCPUs = CPUs.length;
-const PORT = config.puerto;
+const PORT = process.env.PORT;
 const modo = config.modoServer;
 
 /* ---------- CLUSTER ---------- */
@@ -31,7 +31,7 @@ if(cluster.isPrimary && modo === 'cluster'){
     const app = createServer();
     try {
         const connectedServer = await app.listen(PORT);
-        logger.info(`Server is listening in the port http://localhost:${PORT}/ - Date: ${new Date().toLocaleDateString()}`);
+        logger.info(`Server is listening in the port http://localhost:${connectedServer.address().port}/ - Date: ${new Date().toLocaleDateString()}`);
     } catch (error) {
         logger.error(`Error en servidor ${error}`);
     }
